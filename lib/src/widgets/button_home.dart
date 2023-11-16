@@ -126,7 +126,11 @@ class ButtonHome extends StatelessWidget {
           color: Colors.purple[800],
           onTap: (value) => onButtonClick(CommonButtonClick(value)),
         ),
-        Button(value: '=', color: Colors.brown[600]),
+        Button(
+          value: '=',
+          color: Colors.brown[600],
+          onTap: (value) => onButtonClick(EqualButtonClick(value)),
+        ),
       ],
     );
   }
@@ -143,11 +147,11 @@ class Button extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final color = this.color ?? Theme.of(context).colorScheme.primary;
-    return InkWell(
-      onTap: onTap == null ? null : () => onTap!(value),
-      child: Container(
-        padding: const EdgeInsets.all(8),
-        color: color,
+    return Container(
+      padding: EdgeInsets.all(8),
+      color: color,
+      child: TextButton(
+        onPressed: onTap == null ? null : () => onTap!(value),
         child: Center(
           child: Text(
             value,
